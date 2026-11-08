@@ -2,6 +2,8 @@
 
 A LeetCode-style practice app for system design interviews. Runs entirely in your browser — no account, no backend, no paywall.
 
+![Problem list with a live, animated architecture diagram](docs/screenshots/problems.png)
+
 - **25 classic problems** (Easy → Hard) with statement, clarifying questions, and progressive hints
 - **Fix the Design**: 13 broken architectures with real symptoms — edit the diagram (add components, rewire, delete links) and it re-checks itself live, recovering the moment your fix is right (no submit button)
 - **Quizzes**: 9 topic quizzes (47 questions) incl. diagram-based *Spot the Flaw*, with explanations and best scores
@@ -12,6 +14,40 @@ A LeetCode-style practice app for system design interviews. Runs entirely in you
 - **Concepts primer**: framework, estimation cheat-sheet, caching, sharding, CAP, queues, real-time, reliability
 - **Live traffic simulation**: every diagram animates requests flowing along its connections; broken challenges show failing components, dropped requests and degraded metrics, which ease toward healthy as checks pass and turn green when fully fixed (toggle with *Traffic on/paused*; respects reduced-motion)
 - Progress saved in `localStorage`; **export/import JSON** in Settings; light/dark mode
+
+## Screenshots
+
+### Practice workspace
+Read the problem, sketch the architecture on the canvas, write structured notes, and grade yourself against the rubric.
+
+![Problem workspace: rubric, diagram canvas and notes](docs/screenshots/workspace.png)
+
+### Fix the Design — live
+Each challenge starts **broken**: failing components pulse red, requests get dropped and the metrics are degraded. Add or rewire components and the system re-checks itself as you edit. When the fix is right it turns **healthy** instantly.
+
+<table>
+  <tr>
+    <th>Broken: every read hits the database</th>
+    <th>Fixed: a cache in front of it</th>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/fix-broken.png" alt="Fix the Design challenge in a degraded state, database at 100% CPU" /></td>
+    <td><img src="docs/screenshots/fix-healthy.png" alt="Same challenge after adding a cache, system healthy" /></td>
+  </tr>
+</table>
+
+### Quizzes and challenges
+
+<table>
+  <tr>
+    <th>Spot the Flaw: the faulty component lights up after you answer</th>
+    <th>13 Fix the Design challenges</th>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/spot-the-flaw.png" alt="Spot the Flaw quiz question with the flawed database highlighted" /></td>
+    <td><img src="docs/screenshots/fix-list.png" alt="List of Fix the Design challenges" /></td>
+  </tr>
+</table>
 
 ## Run
 
