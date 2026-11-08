@@ -1,0 +1,72 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@import "@xyflow/react/dist/style.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #ffffff;
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+}
+.dark body { background: #020617; color: #e2e8f0; }
+
+.react-flow__edge-textbg { fill: #ffffff; }
+.dark .react-flow__edge-textbg { fill: #1e293b; }
+.dark .react-flow__edge-text { fill: #e2e8f0; }
+.react-flow__edge-text { font-size: 11px; }
+
+/* ---------- Traffic simulation & motion ---------- */
+.sim-packet { filter: drop-shadow(0 0 3px currentColor); pointer-events: none; }
+
+@keyframes sim-pulse-red {
+  0%   { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55); }
+  70%  { box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+@keyframes sim-wobble {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  20% { transform: translate(-1px, 0) rotate(-0.6deg); }
+  40% { transform: translate(1px, 0) rotate(0.6deg); }
+  60% { transform: translate(-1px, 0) rotate(-0.3deg); }
+  80% { transform: translate(1px, 0) rotate(0.3deg); }
+}
+@keyframes sim-glow-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  50% { box-shadow: 0 0 14px 2px rgba(16, 185, 129, 0.35); }
+}
+.sim-hot { animation: sim-pulse-red 1.4s ease-out infinite, sim-wobble 2.2s ease-in-out infinite; }
+.sim-healthy { animation: sim-glow-green 2.4s ease-in-out infinite; border-color: #10b981 !important; }
+.sim-badge { animation: fade-in-up 300ms ease-out both; }
+
+@keyframes fade-in-up { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-in-up { animation: fade-in-up 350ms ease-out both; }
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.animate-fade-in { animation: fade-in 250ms ease-out both; }
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  15%, 45%, 75% { transform: translateX(-6px); }
+  30%, 60%, 90% { transform: translateX(6px); }
+}
+.animate-shake { animation: shake 450ms ease-in-out; }
+
+@keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.03); } 100% { transform: scale(1); } }
+.animate-pop { animation: pop 300ms ease-out; }
+
+@keyframes confetti-fall {
+  0%   { transform: translate(0, -10px) rotate(0); opacity: 1; }
+  100% { transform: translate(var(--dx), 70vh) rotate(var(--rot)); opacity: 0; }
+}
+.confetti-piece { position: absolute; top: 0; width: 8px; height: 12px; border-radius: 2px; animation: confetti-fall var(--dur) cubic-bezier(.2,.6,.4,1) var(--delay) forwards; }
+
+@keyframes flash-red { 0% { background: rgba(239, 68, 68, 0.18); } 100% { background: transparent; } }
+.animate-flash-red { animation: flash-red 700ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sim-hot, .sim-healthy, .sim-badge, .animate-fade-in-up, .animate-fade-in, .animate-shake, .animate-pop, .confetti-piece, .animate-flash-red { animation: none !important; }
+}
